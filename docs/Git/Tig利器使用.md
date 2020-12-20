@@ -56,19 +56,19 @@ Tig是git的基于ncurses的文本模式界面。 它主要用作Git存储库浏
 
 由于 Tig 是 `git log` 的封装器，它可以方便地接受可以传递给 `git log` 的相同参数。例如，要浏览单个文件的提交历史记录，请输入：
 
-```text
+```shell
 tig README.md
 ```
 
 将其与被封装的 Git 命令的输出进行比较，以便更清楚地了解 Tig 如何增强输出。
 
-```text
+```shell
 git log README.md
 ```
 
 当然，我们可以通过-p选项来查看文件的历史修改log
 
-```text
+```shell
 git log -p README.md
 ```
 
@@ -84,7 +84,7 @@ git log -p README.md|tig
 
 有时你想知道谁对文件进行了更改以及原因。命令：
 
-```text
+```shell
 tig blame README.md
 ```
 
@@ -96,13 +96,13 @@ tig本质上是 `git blame` 的封装。我们可以通过该命令查看谁是�
 
 如果你像我一样，你可能会在你的暂存区做了许多修改。你很容易忘记它们。你可以通过以下方式查看暂存处中的最新项目：
 
-```text
+```shell
 git stash show -p stash@{0}
 ```
 
 你可以通过以下方式找到第二个最新项目：
 
-```text
+```shell
 git stash show -p stash@{1}
 ```
 
@@ -110,7 +110,7 @@ git stash show -p stash@{1}
 
 与上面的 Git 命令一样，Tig 可以通过简单的调用轻松增强你的 Git 输出：
 
-```text
+```shell
 tig stash
 ```
 
