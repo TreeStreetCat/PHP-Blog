@@ -1,15 +1,9 @@
 # 😀PHP-Blog
 
-PHP笔记
-
-第一次提交
-
-
-
 **目录**
 
+- [PHP](#PHP)
 - [Linux](#Linux)
-
 - [Git工具](#Git工具)
 
 
