@@ -78,6 +78,12 @@ git log -p README.md
 git log -p README.md|tig
 ```
 
+如果要将提交范围缩小到特定日期范围，请尝试以下操作：
+
+```shell
+tig --after="2020-10-25" --before="2020-12-23" -- README.md
+```
+
 
 
 **浏览谁更改了文件**
