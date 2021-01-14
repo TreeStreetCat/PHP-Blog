@@ -73,13 +73,17 @@ Cron表达式是一个字符串，字符串以5或6个空格隔开，分为6或7
 
 #### 允许的值解释：
 
-**Seconds (秒)：**可以用数字0－59 表示。
-**Minutes(分)：**可以用数字0－59 表示。
-**Hours(时)：**可以用数字0 - 23表示。
-**Day-of-Month(天) ：**可以用数字1 - 31 中的任一一个值，但要注意一些特别的月份。
-**Month(月)：**可以用0 - 11 或用字符串 `JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV and DEC”`表示。
+**Seconds (秒)：** 可以用数字0－59 表示。
 
-**Day-of-Week(每周)：**可以用数字1 - 7表示（1 ＝ 星期日）或用字符口串`SUN, MON, TUE, WED, THU, FRI and SAT`表示。
+**Minutes(分)：** 可以用数字0－59 表示。
+
+**Hours(时)： **可以用数字0 - 23表示。
+
+**Day-of-Month(天) ：** 可以用数字1 - 31 中的任一一个值，但要注意一些特别的月份。
+
+**Month(月)：** 可以用0 - 11 或用字符串 `JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV and DEC”`表示。
+
+**Day-of-Week(每周)：** 可以用数字1 - 7表示（1 ＝ 星期日）或用字符口串`SUN, MON, TUE, WED, THU, FRI and SAT`表示。
 
 <br>
 
@@ -95,6 +99,8 @@ Cron表达式是一个字符串，字符串以5或6个空格隔开，分为6或7
 ```shell
 * * * 4 * ?
 ```
+
+
 
 **- **  表示一个指定的范围。
 
