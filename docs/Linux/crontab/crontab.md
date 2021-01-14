@@ -11,7 +11,7 @@
 - `/etc/cron.d/` 这个目录用来存放任何要执行的crontab文件或脚本。
 - 我们还可以把脚本放在 `/etc/cron.hourly` 、`/etc/cron.daily`、`/etc/cron.weekly`、`/etc/cron.monthly` 目录中，让它每小时/天/星期、月执行一次。
 
-
+<br>
 
 ### Crontab使用
 
@@ -36,7 +36,7 @@ crontab的命令构成为 时间+动作，时间即cron表达式，动作即操�
 * * * * * myCommand
 ```
 
-
+<br>
 
 
 ### Cron表达式
@@ -69,7 +69,7 @@ Cron表达式是一个字符串，字符串以5或6个空格隔开，分为6或7
 | 星期DayofWeek  | 1-7                    | SUN-SAT - * ? / L C # | 1 表示星期天，2 表示星期一，依次类推 |
 | 年（可选）Year | 留空(empty)，1970-2099 | , - * /               |                                      |
 
-
+<br>
 
 #### 允许的值解释：
 
@@ -81,7 +81,7 @@ Cron表达式是一个字符串，字符串以5或6个空格隔开，分为6或7
 
 **Day-of-Week(每周)：**可以用数字1 - 7表示（1 ＝ 星期日）或用字符口串“SUN, MON, TUE, WED, THU, FRI and SAT”表示
 
-
+<br>
 
 #### 符号解释：
 
@@ -110,7 +110,7 @@ Cron表达式是一个字符串，字符串以5或6个空格隔开，分为6或7
 
 **C**  指和calendar联系后计算过的值。例：在 `day-of-month` 字段用 `5C` 指在这个月第5天或之后包括 `calendar` 的第一天；在 `day-of-week` 字段用 `1C` 指在这周日或之后包括 `calendar` 的第一天。
 
-
+<br>
 
 #### 示例：
 
@@ -177,7 +177,7 @@ Cron表达式是一个字符串，字符串以5或6个空格隔开，分为6或7
 
 通过crontab 命令，我们可以在固定的间隔时间执行指定的系统指令或 shell script脚本。 时间间隔的单位可以是分钟、小时、日、月、周及以上的任意组合。 这个命令非常设合周期性的日志分析或数据备份等工作。
 
-
+<br>
 
 ### Laravel实战定时任务
 
@@ -211,7 +211,7 @@ class Test extends Command
 }
 ```
 
-
+<br>
 
 #### 定义调度任务
 
@@ -262,7 +262,7 @@ class Kernel extends ConsoleKernel
 }
 ```
 
-
+<br>
 
 #### 启动 Schedule
 在定义完以上的任务之后，可以通过 `php artisan schedule:run` 来执行这些任务，但是，这个任务执行起来后，需要不断的执行这个这个命令定时器才能不断的运行，所以就需要 linux 的系统功能的帮助，在命令行下执行下面的命令：
@@ -295,7 +295,7 @@ crontab -e
 
 上面命令的含义是每隔一分中就执行一下 `schedule:run` 命令。这样一来，前面定义的任务就可以不断的按照定义的时间间隔不断的执行，定时任务的功能也就实现了。
 
-
+<br>
 
 参考博客：https://learnku.com/laravel/t/1402/laravel-timing-task
 
