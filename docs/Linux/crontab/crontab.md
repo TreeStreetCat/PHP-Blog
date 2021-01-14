@@ -183,7 +183,7 @@ Cron表达式是一个字符串，字符串以5或6个空格隔开，分为6或7
 
 #### 创建命令
 ```shell
-php artisan make:command test
+php artisan make:command Test
 ```
 make:command 命令会在 app/Console/Commands 目录中创建一个新的命令类。如果command目录不存在，它会在你第一次运行 make:command 命令时自动创建。生成的命令将包含所有命令中默认存在的属性和方法。
 
