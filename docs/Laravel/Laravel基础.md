@@ -134,7 +134,50 @@ public function store(){
 
 
 
+
 参考链接：https://learnku.com/docs/laravel/8.x/eloquent-mutators/9409
 
 https://learnku.com/laravel/t/38986
+
+<br>
+
+# 处理类
+
+<br>
+
+## 日期处理类 Carbon
+
+Carbon 是 php 的日期处理类库
+
+Carbon 继承了 Datetime 类，也就是说 Carbon 是一个关于 DateTime 的 PHP拓展，DateTime 里已经实现的方法，Carbon 都能使用。Carbon具有从基本DateTime类继承的所有功能。这种方法使您可以访问基本功能，例如 [Modify](http://php.net/manual/en/datetime.modify.php)，  [Format](http://php.net/manual/en/datetime.format.php) 或 [diff](http://php.net/manual/en/datetime.diff.php) 。
+
+```php
+class Carbon extends DateTime implements JsonSerializable
+```
+
+<br>
+
+**安装：**
+
+```shell
+composer require nesbot/carbon
+```
+
+如果是使用 Laravel 框架，从 Laravel 5.8 版开始，Laravel 正式支持 Carbon 2，也就是开箱即用 Carbon，无需使用 composer 安装 Carbon 依赖。
+
+<br>
+
+**使用：**
+
+> 引入 Carbon
+
+```php
+use Carbon\Carbon;
+```
+
+<br>
+
+
+
+
 
