@@ -31,13 +31,13 @@ Bash 是目前最常用的 Shell，也就是 Bourne Again Shell，由于易用�
 使用下面的命令查看自己主机中当前有哪些种类的 Shell
 
 ```shell
-cat /etc/shells 
+$ cat /etc/shells 
 ```
 
 查看 Linux 当前正在使用的 Shell 类型
 
 ```shell
-echo $SHELL 
+$ echo $SHELL 
 ```
 
 <br>
@@ -73,13 +73,13 @@ Bash Shell 脚本是一个纯文本文件，其中包含一组通常在命令行
 使用下面的命令可以查看 Bash 的版本
 
 ```shell
-bash --version
+$ bash --version
 ```
 
 或者
 
 ```shell
-echo $BASH_VERSION
+$ echo $BASH_VERSION
 ```
 
 <br>
@@ -91,7 +91,7 @@ echo $BASH_VERSION
 使用 `vim` 命令创建并编辑脚本文件，`.sh` 后缀是必须提供以执行的扩展名。
 
 ```shell
-vim file_name.sh
+$ vim file_name.sh
 ```
 
 2.在新打开的文本窗口或文本编辑器中输入 bash 脚本的 shell 命令。
@@ -107,7 +107,7 @@ vim file_name.sh
 最后，以 `./` 作为前缀来执行当前目录下的 bash 脚本。
 
 ```shell
-./file_name.sh
+$ ./file_name.sh
 ```
 
 **注意：**一定要写 `./`，而不是 `file_name.sh`，运行其它二进制的程序也一样，直接写 `file_name.sh`，linux 系统会去 PATH 里寻找有没有叫 `file_name.sh` 的，而只有 `/bin`， `/sbin`， `/usr/bin`，`/usr/sbin` 等目录在 PATH 里，你可以通过 `echo $PATH` 来查看系统变量，你的当前目录通常不在 PATH 里，所以写成 `file_name.sh`  是会找不到命令的，要用 `./file_name.sh` 告诉系统说，就在当前目录找。
