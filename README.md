@@ -32,7 +32,14 @@
 
 
 
+### Mysql
+
+1.[Mysql 练习](docs/Mysql/Mysql练习.md)
+
+
+
 ### Linux
+
 1.[Vim 命令](docs/Linux/vim/Vim命令.md)
 
 2.[crontab 定时任务](docs/Linux/crontab/crontab.md)
