@@ -53,9 +53,17 @@ select a.Score "Score",
 		from Scores a order by a.Score DESC
 ```
 
+<br>
 
+### 4. 变更性别
 
+LeetCode：[627. 变更性别](https://leetcode-cn.com/problems/swap-salary/)
 
+```sql
+update Salary set sex = case when sex = 'm' then 'f' else 'm' end;
+update salary set sex = if(sex = 'm','f','m');
+update salary set sex = char(ascii('m') + ascii('f') - ascii(sex));
+```
 
 
 
