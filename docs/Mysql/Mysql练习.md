@@ -59,13 +59,36 @@ select a.Score "Score",
 
 LeetCode：[627. 变更性别](https://leetcode-cn.com/problems/swap-salary/)
 
+编写一个 SQL 查询来交换所有的 `'f'` 和 `'m'` （即，将所有 `'f'` 变为 `'m'` ，反之亦然），仅使用 单个 `update` 语句 ，且不产生中间临时表。
+
 ```sql
 update Salary set sex = case when sex = 'm' then 'f' else 'm' end;
 update salary set sex = if(sex = 'm','f','m');
 update salary set sex = char(ascii('m') + ascii('f') - ascii(sex));
 ```
 
+<br>
 
+### 5. 连续出现的数字
+
+LeetCode：[180. 连续出现的数字](https://leetcode-cn.com/problems/consecutive-numbers/)
+
+编写一个 SQL 查询，查找所有至少连续出现三次的数字。
+
+```sql
+SELECT DISTINCT
+    l1.Num AS ConsecutiveNums
+FROM
+    Logs l1,
+    Logs l2,
+    Logs l3
+WHERE
+    l1.Id = l2.Id - 1
+    AND l2.Id = l3.Id - 1
+    AND l1.Num = l2.Num
+    AND l2.Num = l3.Num
+;
+```
 
 
 
