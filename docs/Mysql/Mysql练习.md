@@ -1,3 +1,55 @@
+总的来说，SQL语言定义了这么几种操作数据库的能力：
+
+**DDL：Data Definition Language**
+
+DDL允许用户定义数据，也就是创建表、删除表、修改表结构这些操作。通常，DDL由数据库管理员执行。
+
+**DML：Data Manipulation Language**
+
+DML为用户提供添加、删除、更新数据的能力，这些是应用程序对数据库的日常操作。
+
+**DQL：Data Query Language**
+
+DQL允许用户查询数据，这也是通常最频繁的数据库日常操作。
+
+<br>
+
+### 基础
+
+- 创建表
+
+```sql
+Create Table: CREATE TABLE `test` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `created_at` datetime DEFAULT NULL,
+  `department` varchar(255) DEFAULT NULL,
+  `salary` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+```
+
+- 插入语句
+
+```sql
+ insert into test (id,created_at,department,salary) values(15,now(),2,2)
+```
+
+- 更新语句
+
+```sql
+update test set department=3 where id = 15
+```
+
+- 删除语句
+
+```sql
+delete from test where id = 15;
+```
+
+
+
+
+
 ### 1. 找出各部门薪酬前三的员工
 
 LeetCode：[185. 部门工资前三高的所有员工](https://leetcode-cn.com/problems/department-top-three-salaries/)

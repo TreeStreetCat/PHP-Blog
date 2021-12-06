@@ -68,5 +68,35 @@
 
 单调栈就是指栈中的元素必须是按照升序排列的栈，或者是降序排列的栈。对于这两种排序方式的栈，还给它们各自取了小名。
 
-比如：`[1, 2, 3, 4, 5]` 是单调递增栈，反之 `[5, 4, 3, 2, 1]` 是单调递减栈
+比如：`[1, 2, 3, 4, 5]` 是单调递增栈，反之 `[5, 4, 3, 2, 1]` 是单调递减栈。
+
+【题目】数组中元素右边第一个比元素自身小的元素的位置。
+
+```java
+    int[] findRightSmall(int[] A) {
+        if (A == null || A.length == 0)return null;
+        int res[] = new int[A.length];
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 0; i < A.length; i++){
+            int num = A[i];
+          	// 每个元素都向左遍历栈中的元素完成消除动作
+            while (!stack.isEmpty() && A[stack.peek()] > num){
+              	// 消除的时候，记录一下被谁消除了
+                res[stack.peek()] = i;
+                // 消除时候，值更大的需要从栈中消失
+                stack.pop();
+            }
+          	// 剩下的入栈
+            stack.push(i);
+        }
+        // 栈中剩下的元素，由于没有人能消除他们，因此，只能将结果设置为-1。
+        while(!stack.isEmpty()){
+            res[stack.peek()] = -1;
+            stack.pop();
+        }
+        return res;
+    }
+```
+
+
 
