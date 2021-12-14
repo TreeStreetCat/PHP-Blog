@@ -142,11 +142,58 @@ WHERE
 ;
 ```
 
+<br>
 
+### 6. 查找重复的学生
 
+**table name: student**
 
+| id   | name          |
+| ---- | ------------- |
+| 1    | treestreetcat |
+| 2    | treestreetcat |
+| 3    | Ming          |
+| 4    | Ar            |
 
+- 方法一：
 
+1. 创建一个辅助表，将姓名列进行行分组汇总
 
+```sql
+select name, count(*) from student group by name;
+```
 
+| name          | count(*) |
+| ------------- | -------- |
+| treestreetcat | 2        |
+| Ming          | 1        |
+| Ar            | 1        |
+
+2. 选出辅助表中计数大于1的姓名
+
+```sql
+select name from 辅助表 where 计数 > 1;
+```
+
+具体的 sql 如下：
+
+```sql
+select name from (select name, count(*) as c from student group by name) as temp where temp.c > 1;
+```
+
+结果如下：
+
+| name          |
+| ------------- |
+| treestreetcat |
+
+<br>
+
+- 方法二：
+
+将 `count(*)`  放到条件过滤中
+
+```sql
+select name from student group by name having count(*) > 1
+```
 
