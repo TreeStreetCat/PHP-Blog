@@ -19,7 +19,7 @@ DQL允许用户查询数据，这也是通常最频繁的数据库日常操作�
 - 创建表
 
 ```sql
-Create Table: CREATE TABLE `test` (
+CREATE TABLE `test` (
   `id` int NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
   `department` varchar(255) DEFAULT NULL,
