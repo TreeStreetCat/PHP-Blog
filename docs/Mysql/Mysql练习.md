@@ -63,21 +63,17 @@ delete from test where id = 15;
 首先找出每个部门薪酬最高的薪酬，由于薪酬可能有重复的，所以使用 `distinct`
 
 ```sql
-select department_id, max(distinct salary) from employee where department_id = 1;
+select department_id, max(distinct salary) from employee group by department_id;
 ```
 
 再找出小于薪酬最大值的，就是**第二高的薪酬**了
 
 ```sql
 select e1.department_id, max(distinct salary) from employee e1 where salary < (
-     select max(distinct salary) from employee where department_id = e1.department_id) GROUP BY department_id;
+     select max(distinct salary) from employee where department_id = e1.department_id) group by department_id;
 ```
 
 <br>
-
-**如果想要找出某一部门薪酬第二高的薪酬怎么找呢？**
-
-
 
 
 
