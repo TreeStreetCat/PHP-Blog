@@ -37,7 +37,7 @@ CREATE TABLE `test` (
 - 更新语句
 
 ```sql
-update test set department=3 where id = 15
+update test set department = 3 where id = 15
 ```
 
 - 删除语句
@@ -48,7 +48,7 @@ delete from test where id = 15;
 
 
 
-
+<br>
 
 ### 1. 查找第N高的数据
 
@@ -74,9 +74,6 @@ select e1.department_id, max(distinct salary) from employee e1 where salary < (
 ```
 
 <br>
-
-
-
 **找出各部门薪酬前三的员工**
 
 LeetCode：[185. 部门工资前三高的所有员工](https://leetcode-cn.com/problems/department-top-three-salaries/)
@@ -102,7 +99,7 @@ LeetCode：[196. 删除重复的电子邮箱](https://leetcode-cn.com/problems/d
 delete p1 from Person p1 join Person p2 on p1.Email = p2.Email where p1.Id > p2.Id
 ```
 
-在 [DELETE 官方文档](https://dev.mysql.com/doc/refman/8.0/en/delete.html)中，给出了这一用法，比如下面这个DELETE语句👇
+在 [DELETE 官方文档](https://dev.mysql.com/doc/refman/8.0/en/delete.html)中，给出了这一用法，比如下面这个 `DELETE` 语句👇
 
 ```sql
 delete t1 from t1 left join t2 on t1.id=t2.id where t2.id is NULL;
@@ -110,7 +107,7 @@ delete t1 from t1 left join t2 on t1.id=t2.id where t2.id is NULL;
 
 这种 `DELETE` 方式很陌生，竟然和 `SELETE` 的写法类似。它涉及到 `t1` 和 `t2` 两张表，`DELETE t1` 表示要删除 `t1` 的一些记录，具体删哪些，就看 `WHERE` 条件，满足就删；
 
-这里删的是t1表中，跟t2匹配不上的那些记录。
+这里删的是 `t1 `表中，跟 `t2` 匹配不上的那些记录。
 
 **拓展：**查询重复的记录
 
@@ -124,12 +121,12 @@ select * from Person group by Email having count(*) > 1
 
 LeetCode： [178. 分数排名](https://leetcode-cn.com/problems/rank-scores/)
 
-解析：首先解析 **“排名” ** ，根据分数排名，即当前排名就是当前有多少人分数高于或者低于，假设分数 100 最高，小于 100 的 可以写作 `where score < 100`， 再根据 `count()` 算出排名。
+解析：首先解析 **排名** ，根据分数排名，即当前排名就是当前有多少人分数高于或者低于，假设分数 100 最高，小于 100 的 可以写作 `where score < 100`， 再根据 `count()` 算出排名。
 
 ```sql
 select a.Score "Score", 
 	(select count(distinct b.Score) from Scores b where a.Score <= b.Score ) as "Rank" 
-		from Scores a order by a.Score DESC
+		from Scores a order by a.Score desc
 ```
 
 <br>
@@ -141,7 +138,7 @@ LeetCode：[627. 变更性别](https://leetcode-cn.com/problems/swap-salary/)
 编写一个 SQL 查询来交换所有的 `'f'` 和 `'m'` （即，将所有 `'f'` 变为 `'m'` ，反之亦然），仅使用 单个 `update` 语句 ，且不产生中间临时表。
 
 ```sql
-update Salary set sex = case when sex = 'm' then 'f' else 'm' end;
+update salary set sex = case when sex = 'm' then 'f' else 'm' end;
 update salary set sex = if(sex = 'm','f','m');
 update salary set sex = char(ascii('m') + ascii('f') - ascii(sex));
 ```
@@ -155,17 +152,17 @@ LeetCode：[180. 连续出现的数字](https://leetcode-cn.com/problems/consecu
 编写一个 SQL 查询，查找所有至少连续出现三次的数字。
 
 ```sql
-SELECT DISTINCT
-    l1.Num AS ConsecutiveNums
-FROM
+select distinct
+    l1.Num as ConsecutiveNums
+from
     Logs l1,
     Logs l2,
     Logs l3
-WHERE
+where
     l1.Id = l2.Id - 1
-    AND l2.Id = l3.Id - 1
-    AND l1.Num = l2.Num
-    AND l2.Num = l3.Num
+    and l2.Id = l3.Id - 1
+    and l1.Num = l2.Num
+    and l2.Num = l3.Num
 ;
 ```
 
@@ -173,7 +170,7 @@ WHERE
 
 ### 6. 查找重复的学生
 
-**table name: student**
+**学生表：student**
 
 | id   | name          |
 | ---- | ------------- |
@@ -223,4 +220,78 @@ select name from (select name, count(*) as c from student group by name) as temp
 ```sql
 select name from student group by name having count(*) > 1
 ```
+
+<br>
+
+### 7.如何查找不在表里的数据
+
+有这样两个表 `student` 学生表、`course` 选课表，两个表通过 `id(student表)` 和 `stu_id(course表)` 关联起来
+
+![image-20220120154557153](images/image-20220120154557153.png)
+
+![image-20220120154618245](images/image-20220120154618245.png)
+
+如果要查询 **「有选了课的同学数据」**，如下图所示
+
+![image-20220120155530479](images/image-20220120155530479.png)
+
+可以直接使用**等值连接**，在连接条件中使用**等于号（=）**运算符比较被连接列的列值，其查询结果中列出被连接表中的所有列，**包括其中的重复列**。
+
+![image-20220120160635698](images/image-20220120160635698.png)
+
+通俗讲就是根据条件，找到表 A 和 表 B 的数据的交集
+
+```sql
+select * from Table_A A join Table_B B on A.id = B.id;
+```
+
+最终的结果
+
+```sql
+select `name`, course_name from student join course on student.id = course.stu_id
+```
+
+<br>
+
+> 那么，回到我们本节的主题：如何查找不在表里的数据？
+
+我先来看一下左/右连接查询。
+
+- **左连接查询（左外连接查询）**
+
+```sql
+select * from Table_A A left join Table_B B on A.id = B.id;
+select * from Table_A A left outer join Table_B B on A.id = B.id;
+```
+
+根据条件，用右表（B）匹配左表（A），能匹配，正确保留，**不能匹配其他表的字段都置空 Null**。也就是，根据条件找到表 A 和 表 B 的数据的交集，再加上左表的数据集。如下图所示：
+
+![image-20220120152020653](images/image-20220120152020653.png)
+
+<br>
+
+- **右连接（右外连接）**
+
+```sql
+select * from Table_A A right join Table_B B on A.id=B.id;
+select * from Table_A A right outer join Table_B B on A.id=B.id;
+```
+
+根据条件，用左表（A）匹配右表（B），能匹配，正确保留，**不能匹配其他表的字段都置空 Null**。
+
+也就是，根据条件找到表 A 和 表 B 的数据的交集，再加上右表的数据集。如下图所示：
+
+![image-20220120152004915](images/image-20220120152004915.png)
+
+<br>
+
+>  对于 `student` 表和 `course` 表，`查找没有选课的学生数据`，这里我们可以考虑使用**左连接查询**。
+
+```sql
+select * from student left join course on student.id = course.stu_id where course.id is null;
+```
+
+结果如下：
+
+![image-20220121112220407](images/image-20220121112220407.png)
 
