@@ -74,6 +74,7 @@ select e1.department_id, max(distinct salary) from employee e1 where salary < (
 ```
 
 <br>
+
 **找出各部门薪酬前三的员工**
 
 LeetCode：[185. 部门工资前三高的所有员工](https://leetcode-cn.com/problems/department-top-three-salaries/)
@@ -231,11 +232,11 @@ select name from student group by name having count(*) > 1
 
 ![image-20220120154618245](images/image-20220120154618245.png)
 
-如果要查询 **「有选了课的同学数据」**，如下图所示
+如果要查询 **「有选了课的同学数据」**，如下图所示：
 
 ![image-20220120155530479](images/image-20220120155530479.png)
 
-可以直接使用**等值连接**，在连接条件中使用**等于号（=）**运算符比较被连接列的列值，其查询结果中列出被连接表中的所有列，**包括其中的重复列**。
+可以直接使用**等值连接**，在连接条件中使用**等于号（=）**运算符比较被连接列的列值，其查询结果中列出被连接表中的所有列，**包括其中的重复列**。如下图所示：
 
 ![image-20220120160635698](images/image-20220120160635698.png)
 
