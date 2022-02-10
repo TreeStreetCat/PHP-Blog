@@ -296,3 +296,49 @@ select * from student left join course on student.id = course.stu_id where cours
 
 ![image-20220121112220407](images/image-20220121112220407.png)
 
+<br>
+
+### 8.换座位
+
+LeetCode：[626. 换座位](https://leetcode-cn.com/problems/exchange-seats/)
+
+首先根据题意可得，只是改变相邻的 `id` 号，而相邻的 `id` 号是数字，分为奇数或者偶数，查询目的是改变相邻学生的座位号，也就是我们可以根据奇数或者偶数来切换座位。当然，我们要考虑一个**边界临界点**，也就是我们看到下图，最后一个 `id`  为 5，是不需要换座位的。
+
+![image-20220210170256144](images/image-20220210170256144.png)
+
+因此，更换 `id` 可以使用 `case when`  和 `mod` 函数
+
+`sql`  求余函数：`mod(n,m)` ，返回 `n` 除以 `m` 的余数。比如 `mod(8,2)`  的结果是 `0`。
+
+如果 `n` 除以 `2 `的余数是 `0`，说明 `n` 是偶数，否则是奇数。
+
+转换为判断奇数，偶数的 `sql` 就是：
+
+```sql
+case
+      when mod(座位号, 2) != 0  then  '奇数'
+      when mod(座位号, 2)  = 0  then  '偶数'
+end
+```
+
+最后一个座位号，等于表里有多少行，可以用count(*) 计算出来
+
+```sql
+# 最后一个座位号
+select count(*) as counts from seat;
+```
+
+<br>
+
+最终的 `sql` 语句
+
+```sql
+select (
+case 
+    when mod(id, 2) != 0 and counts != id then id + 1
+    when mod(id, 2) != 0 and counts = id then id
+    else id - 1
+end
+) as id, student from seat, (select count(*) as counts from seat) a order by id;
+```
+
