@@ -3,14 +3,45 @@
 
 ### Cron 介绍
 
-我们经常使用的是 crontab 命令是 cron table 的简写，它是 cron 的配置文件，也可以叫它作业列表。我们可以使用crontab来定时做一些事情，比如每天凌晨2点进行的定期备份。
+我们经常使用的是 `crontab` 命令是 `cron table` 的简写，它是 `cron` 的配置文件，也可以叫它作业列表。我们可以使用 `crontab` 来定时做一些事情，比如每天凌晨2点进行的定期备份。
 
 我们可以在以下文件夹内找到相关配置文件。
 
-- `/var/spool/cron/ ` 目录下存放的是每个用户包括 root 的 crontab 任务，每个任务以创建者的名字命名
+- `/var/spool/cron/ ` 目录下存放的是每个用户包括 `root` 的 `crontab` 任务，每个任务以创建者的名字命名
 - `/etc/crontab` 这个文件负责调度各种管理和维护任务。
-- `/etc/cron.d/` 这个目录用来存放任何要执行的 crontab 文件或脚本。
+- `/etc/cron.d/` 这个目录用来存放任何要执行的 `crontab` 文件或脚本。
 - 我们还可以把脚本放在 `/etc/cron.hourly` 、`/etc/cron.daily`、`/etc/cron.weekly`、`/etc/cron.monthly` 目录中，让它每小时/天/星期、月执行一次。
+
+<br>
+
+**注意**⚠️：
+
+- 修改 `/etc/crontab` 这种方法只有 `root` 用户能用，这种方法更加方便与直接直接给其他用户设置计划任务，而且还可以指定执行 `shell` 等等。
+
+- `crontab -e `这种所有用户都可以使用，普通用户也只能为自己设置计划任务，**这里要注意**⚠️，我们使用 
+
+`crontab -e` 的话，是直接对应生成用户的任务，是在 `/var/spool/cron/ ` 目录下。
+
+两种 `/etc/crontab` 和  `crontab -e`， 还有**格式上**的区别， `/etc/crontab` 格式如下：（通过 `vim /etc/crontab` 可以看到）
+
+```shell
+ # For details see man 4 crontabs
+ 
+ # Example of job definition:
+ # .---------------- minute (0 - 59)
+ # |  .------------- hour (0 - 23)
+ # |  |  .---------- day of month (1 - 31)
+ # |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+ # |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu, fri,sat
+ # |  |  |  |  |
+ # *  *  *  *  * user-name  command to be executed
+```
+
+而 `crontab -e`，无法给其他用户设置任何计划，只能对于当前的用户而设置，格式如下：
+
+```shell
+# *  *  *  *  * command to be executed
+```
 
 <br>
 
@@ -41,7 +72,7 @@ crontab 的命令构成为 时间+动作，时间即 cron 表达式，动作即�
 
 
 ### Cron表达式
-Cron 表达式是一个字符串，字符串以4或5个空格隔开，分为5或6个域，每一个域代表一个含义，Cron 有如下两种
+Cron 表达式是一个字符串，字符串以4或5个空格隔开，分为 5 或 6 个域，每一个域代表一个含义，Cron 有如下两种
 
 #### 语法格式：
 
@@ -50,7 +81,7 @@ Cron 表达式是一个字符串，字符串以4或5个空格隔开，分为5或
 `Minutes Hours DayofMonth Month DayofWeek`
 
 
-例如要表示 `每隔1分钟执行一次`，则 cron 写法如下：
+例如要表示 `每隔1分钟执行一次`，则 `cron` 写法如下：
 
 ```shell
 1 * * * ?  
